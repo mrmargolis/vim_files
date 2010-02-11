@@ -1,1 +1,5 @@
 Checkout this repo to .vim and symlink .vim/vimrc to ~/.vimrc 
+
+To get all the git submodules in /bundle run
+git submodule init
+git submodule update
