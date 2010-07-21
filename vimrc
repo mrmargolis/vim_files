@@ -28,7 +28,12 @@ set noerrorbells
 set wildmenu
 set ruler
 syntax on 
-filetype on
+filetype plugin indent on
+
+
+set laststatus=2 "always show status
+set showmode    "show current mode down the bottom
+
 
 " Make backspace delete lots of things
 set backspace=indent,eol,start
@@ -52,6 +57,12 @@ function! Mosh_Tab_Or_Complete()
         return "\<Tab>"
 endfunction
 :inoremap <Tab> <C-R>=Mosh_Tab_Or_Complete()<CR>
+
+
+
+" Tab or autocomplete with intelligence
+command BuildRubyTags :exec ":!ctags -a -e -f TAGS --tag-relative -R app lib"
+:set tags=./TAGS;
 
 
 " Edit another file in the same directory as the current file
@@ -137,11 +148,6 @@ map <leader>cd :cd %:p:h<cr>
 
 "Toggle NERDTree
 map <leader>d :NERDTreeToggle<cr>
-
-"Ack integration
-set grepprg=ack
-nmap ,c :cnext<CR>
-nmap ,# :Ack  <c-R><c-W><CR>
 
 " 100 lines of command line history
 set history=100         
