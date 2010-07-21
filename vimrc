@@ -24,6 +24,8 @@ set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 set  dictionary="/usr/dict/words"
 
 set noerrorbells
+set visualbell t_vb=
+
 
 set wildmenu
 set ruler
@@ -48,6 +50,14 @@ set hidden
 set background=dark
 colorscheme vividchalk
 
+"map to bufexplorer
+nnoremap <leader>b :BufExplorer<cr>
+
+
+"Command-T configuration
+let g:CommandTMaxHeight=10
+let g:CommandTMatchWindowAtTop=1
+
 
 " Tab or autocomplete with intelligence
 function! Mosh_Tab_Or_Complete()
@@ -61,7 +71,7 @@ endfunction
 
 
 " Tab or autocomplete with intelligence
-command BuildRubyTags :exec ":!ctags -a -e -f TAGS --tag-relative -R app lib"
+command! BuildRubyTags :exec ":!ctags -a -e -f TAGS --tag-relative -R app lib"
 :set tags=./TAGS;
 
 
@@ -105,12 +115,13 @@ set hlsearch
 set incsearch
 "set ignore case for search
 set ignorecase
+set smartcase "be case sensitive if search has cap letter
 
 "show partial commands in bottom line
 set showcmd
 
 "when listing user commands
-com VR :vertical resize 80
+com! VR :vertical resize 80
 
 "Set mapleader
 let mapleader = ","
@@ -120,6 +131,10 @@ let g:mapleader = ","
 set number
 highlight LineNr term=bold cterm=NONE ctermfg=DarkRed ctermbg=NONE gui=NONE guifg=DarkRed guibg=NONE
 
+
+"make it easy to source and load vimrc
+:nmap <Leader>s :source $MYVIMRC
+:nmap <Leader>v :e $MYVIMRC
 
 
 "Tab configuration
