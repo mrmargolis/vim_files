@@ -1,4 +1,13 @@
+call pathogen#helptags()
 call pathogen#runtime_append_all_bundles()
+
+" Clear old autocmds in group
+autocmd!
+
+"Set mapleader
+let mapleader = ","
+let g:mapleader = ","
+
 
 " Sane spacing and tabs
 set tabstop=2
@@ -13,6 +22,11 @@ set isk+=_,$,@,%,#,-
 behave xterm
 
 set nocompatible
+
+
+" 100 lines of command line history
+set history=100         
+
 
 "when scroll down start at last 3 lines
 set scrolloff=3
@@ -35,6 +49,10 @@ filetype plugin indent on
 
 set laststatus=2 "always show status
 set showmode    "show current mode down the bottom
+set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
+
+command! Q q " Bind :Q to :q
+map <leader>w :w<cr>
 
 
 " Make backspace delete lots of things
@@ -51,28 +69,21 @@ set background=dark
 colorscheme vividchalk
 
 "map to bufexplorer
-nnoremap <leader>b :BufExplorer<cr>
+map <leader>b :BufExplorer<cr>
 
+
+"shortbut for opening new ConqueTerm bash
+map <leader>s :ConqueTermSplit bash<cr>
 
 "Command-T configuration
 let g:CommandTMaxHeight=10
 let g:CommandTMatchWindowAtTop=1
 
 
-" Tab or autocomplete with intelligence
-function! Mosh_Tab_Or_Complete()
-    if col('.')>1 && strpart( getline('.'), col('.')-2, 3 ) =~ '^\w'
-        return "\<C-N>"
-    else
-        return "\<Tab>"
-endfunction
-:inoremap <Tab> <C-R>=Mosh_Tab_Or_Complete()<CR>
-
-
-
-" Tab or autocomplete with intelligence
+"Buil ctags file for rails projects 
 command! BuildRubyTags :exec ":!ctags -a -e -f TAGS --tag-relative -R app lib"
 :set tags=./TAGS;
+
 
 
 " Edit another file in the same directory as the current file
@@ -87,7 +98,7 @@ endif
 
 "-----
 " select xml text to format and hit ,x
-vmap ,x :!tidy -q -i -xml<CR>
+vmap <leader>x :!tidy -q -i -xml<CR> 
 "--- 
 
 "----
@@ -123,33 +134,17 @@ set showcmd
 "when listing user commands
 com! VR :vertical resize 80
 
-"Set mapleader
-let mapleader = ","
-let g:mapleader = ","
-
 "show linenumbers
 set number
 highlight LineNr term=bold cterm=NONE ctermfg=DarkRed ctermbg=NONE gui=NONE guifg=DarkRed guibg=NONE
 
 
 "make it easy to source and load vimrc
-:nmap <Leader>s :source $MYVIMRC
 :nmap <Leader>v :e $MYVIMRC
-
-
-"Tab configuration
-map <leader>tn :tabnew %<cr>
-map <leader>te :tabedit
-map <leader>tc :tabclose<cr>
-map <leader>tl :tablast<cr>
-map <leader>tf :tabfirst<cr>
-map <leader>tm :tabmove
-try
-  set switchbuf=usetab
-  set stal=2
-catch
-endtry
-
+" Source the vimrc file after saving it
+if has("autocmd")
+  autocmd bufwritepost .vimrc source $MYVIMRC
+endif
 
 " A nice, minimalistic tabline
 hi TabLine cterm=bold,underline ctermfg=8 ctermbg=0
@@ -163,9 +158,6 @@ map <leader>cd :cd %:p:h<cr>
 
 "Toggle NERDTree
 map <leader>d :NERDTreeToggle<cr>
-
-" 100 lines of command line history
-set history=100         
 
 
 "save as sudo
