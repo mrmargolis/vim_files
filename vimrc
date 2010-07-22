@@ -19,50 +19,41 @@ set expandtab
 "Set what VIM thinks of as keywords.  Used when searching and moving
 set isk+=_,$,@,%,#,- 
 
+
+"Basic settings############################################################
 behave xterm
-
 set nocompatible
-
-
 " 100 lines of command line history
 set history=100         
-
-
 "when scroll down start at last 3 lines
 set scrolloff=3
-
 "set vim to use a central backup dir
 set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
-
 set  dictionary="/usr/dict/words"
-
 set noerrorbells
 set visualbell t_vb=
-
-
 set wildmenu
 set ruler
 syntax on 
 filetype plugin indent on
+" Make backspace delete lots of things
+set backspace=indent,eol,start
+" 1 height windows
+set winminheight=1
+" better handling of background buffers
+set hidden
 
-
+"Status bar
 set laststatus=2 "always show status
 set showmode    "show current mode down the bottom
 set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
 
+
+"Shortcuts for common tasks
 command! Q q " Bind :Q to :q
 map <leader>w :w<cr>
 
-
-" Make backspace delete lots of things
-set backspace=indent,eol,start
-
-" 1 height windows
-set winminheight=1
-
-" better handling of background buffers
-set hidden
 
 "colors
 set background=dark
