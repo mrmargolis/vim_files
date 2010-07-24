@@ -8,6 +8,8 @@ autocmd!
 let mapleader = ","
 let g:mapleader = ","
 
+nnoremap ; :
+
 
 " Sane spacing and tabs
 set tabstop=2
@@ -47,7 +49,7 @@ set hidden
 "Status bar
 set laststatus=2 "always show status
 set showmode    "show current mode down the bottom
-set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
+set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%{rvm#statusline()}%=%-14.(%l,%c%V%)\ %P
 
 
 "Shortcuts for common tasks
@@ -64,7 +66,7 @@ map <leader>b :BufExplorer<cr>
 
 
 "shortbut for opening new ConqueTerm bash
-map <leader>s :ConqueTermSplit bash<cr>
+map <leader>s :ConqueTermSplit<space>
 
 "Command-T configuration
 let g:CommandTMaxHeight=10
@@ -131,7 +133,7 @@ highlight LineNr term=bold cterm=NONE ctermfg=DarkRed ctermbg=NONE gui=NONE guif
 
 
 "make it easy to source and load vimrc
-:nmap <Leader>v :e $MYVIMRC
+:nmap <Leader>v :e $MYVIMRC<cr>
 " Source the vimrc file after saving it
 if has("autocmd")
   autocmd bufwritepost .vimrc source $MYVIMRC
