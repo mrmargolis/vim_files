@@ -25,13 +25,17 @@ set isk+=_,$,@,%,#,-
 "Basic settings############################################################
 behave xterm
 set nocompatible
+
 " 100 lines of command line history
 set history=100         
+
 "when scroll down start at last 3 lines
 set scrolloff=3
+
 "set vim to use a central backup dir
 set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
+
 set  dictionary="/usr/dict/words"
 set noerrorbells
 set visualbell t_vb=
@@ -39,17 +43,24 @@ set wildmenu
 set ruler
 syntax on 
 filetype plugin indent on
+
 " Make backspace delete lots of things
 set backspace=indent,eol,start
+
 " 1 height windows
 set winminheight=1
+
 " better handling of background buffers
 set hidden
+
+" highlight current line
+" set cul
 
 "Status bar
 set laststatus=2 "always show status
 set showmode    "show current mode down the bottom
-set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%{rvm#statusline()}%=%-14.(%l,%c%V%)\ %P
+set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%{rvm#statusline()}%{SyntasticStatuslineFlag()}%=%-14.(%l,%c%V%)\ %P
+  
 
 
 "Shortcuts for common tasks
@@ -161,5 +172,17 @@ if filereadable($HOME."/.vimrc_work")
   source $HOME/.vimrc_work
 endif
 
+"exit insert mode by typing jj 
+imap jj <esc>
 
+
+let g:syntastic_enable_signs=1
+let g:syntastic_quiet_warnings=1
+let g:syntastic_auto_loc_list=1
+
+
+"hide macvim gui
+if has("gui_running")
+    set guioptions=egmrt
+endif
 
