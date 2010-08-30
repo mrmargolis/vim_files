@@ -21,6 +21,12 @@ set background=dark
 colorscheme vividchalk
 
 
+"hide macvim gui
+if has("gui_running")
+    set guioptions=egmrt
+endif
+
+
 " Sane spacing and tabs
 set tabstop=2
 set smarttab
@@ -107,15 +113,11 @@ vmap < <gv
 " Searching Stuff
 " map space to starting a new search
 map <space> /
-"set hl search
-set hlsearch
-"set incsearch
-set incsearch
-"set ignore case for search
-set ignorecase
+set hlsearch "set hl search
+set incsearch "set incsearch
+set ignorecase "set ignore case for search
 set smartcase "be case sensitive if search has cap letter
-" assume the /g flag on :s substitutions to replace all matches in a line:
-set gdefault
+set gdefault " /g flag on :s substitutions to replace all matches in a line:
 
 
 " Edit another file in the same directory as the current file
@@ -138,10 +140,6 @@ vmap <leader>x :!tidy -q -i -xml<CR>
 
 " run selection in bash
 vmap ,r :!bash <CR>
-
-
-"when listing user commands
-com! VR :vertical resize 80
 
 
 "make it easy to source and load vimrc
@@ -192,12 +190,6 @@ let NERDTreeIgnore=['\.$', '\~$']
 let g:syntastic_enable_signs=1
 "let g:syntastic_quiet_warnings=1
 let g:syntastic_auto_loc_list=0
-
-
-"hide macvim gui
-if has("gui_running")
-    set guioptions=egmrt
-endif
 
 
 "load some work stuff
