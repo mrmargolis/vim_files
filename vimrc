@@ -17,8 +17,10 @@ let g:mapleader = ","
 
   
 "colors
-set background=dark
-colorscheme vividchalk
+set background=light
+colorscheme default
+"set background=dark
+"colorscheme vividchalk
 
 
 "hide macvim gui
@@ -113,11 +115,15 @@ vmap < <gv
 " Searching Stuff
 " map space to starting a new search
 map <space> /
+nnoremap / /\v
+vnoremap / /\v
 set hlsearch "set hl search
 set incsearch "set incsearch
 set ignorecase "set ignore case for search
 set smartcase "be case sensitive if search has cap letter
 set gdefault " /g flag on :s substitutions to replace all matches in a line:
+nnoremap <leader><space> :noh<cr>
+
 
 
 " Edit another file in the same directory as the current file
@@ -141,6 +147,9 @@ vmap <leader>x :!tidy -q -i -xml<CR>
 " run selection in bash
 vmap ,r :!bash <CR>
 
+" mapping to search with Ack
+nnoremap <leader>a :Ack 
+
 
 "make it easy to source and load vimrc
 :nmap <Leader>v :e $MYVIMRC<cr>
@@ -160,19 +169,15 @@ map <leader>s :ConqueTermSplit<space>
 " Continue updating shell when it's not the current, focused buffer
 let g:ConqueTerm_ReadUnfocused = 1
 
-
 "Command-T configuration
-let g:CommandTMaxHeight=25
+let g:CommandTMaxHeight=35
 let g:CommandTMatchWindowAtTop=1
-
-
-"Supertab
-let g:SuperTabDefaultCompletionType = "context"
 
 
 """""""" NERDTree: 
 " much of this is from http://github.com/spicycode/Vimlander-2-The-Quickening
-map <leader>d :NERDTreeToggle<cr>
+map <leader>dc :NERDTreeClose<cr>
+map <leader>do :NERDTree<cr>
 " Enable nice colors
 let NERDChristmasTree = 1
 " Make it easy to see where we are
