@@ -73,3 +73,9 @@
 [submodule "snippets"]
 	path = snippets
 	url = http://github.com/scrooloose/snipmate-snippets.git
+[submodule "bundle/command-t"]
+	path = bundle/command-t
+	url = http://github.com/wincent/Command-T.git
+[submodule "bundle/vim-ruby-refactoring"]
+	path = bundle/vim-ruby-refactoring
+	url = git@github.com:mrmargolis/vim-ruby-refactoring.git

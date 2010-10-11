@@ -145,7 +145,7 @@ vmap <leader>x :!tidy -q -i -xml<CR>
 
 
 " run selection in bash
-vmap ,r :!bash <CR>
+vmap ,rs :!bash <CR>
 
 " mapping to search with Ack
 nnoremap <leader>a :Ack 
