@@ -5,6 +5,9 @@ call pathogen#runtime_append_all_bundles()
 " Clear old autocmds in group so we don't get warnings
 autocmd!
 
+set mouse=a
+set clipboard=unnamed
+
 
 "General behavior
 set nocompatible
@@ -17,10 +20,10 @@ let g:mapleader = ","
 
   
 "colors
-set background=light
-colorscheme default
-"set background=dark
-"colorscheme vividchalk
+"set background=light
+"colorscheme default
+set background=dark
+colorscheme vividchalk
 
 
 "hide macvim gui
