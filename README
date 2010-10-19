@@ -1,7 +1,9 @@
-Clone this repo to .vim and symlink .vim/vimrc to ~/.vimrc 
+Step 1: Clone this repo to .vim and symlink .vim/vimrc to ~/.vimrc 
+cd ~
+git clone git://github.com/mrmargolis/vim_files.git .vim
 ln -s ~/.vim/vimrc ~/.vimrc
 
-To get all the git submodules in /bundle run
+Step 2: To get all the plugins setup
 git submodule init
 git submodule update
 rm -rf ~/.vim/bundle/snipmate.vim/snippets        (I keep snippets in .vim/snippets)
