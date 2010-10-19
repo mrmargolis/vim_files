@@ -78,4 +78,4 @@
 	url = http://github.com/wincent/Command-T.git
 [submodule "bundle/vim-ruby-refactoring"]
 	path = bundle/vim-ruby-refactoring
-	url = git@github.com:mrmargolis/vim-ruby-refactoring.git
+	url = http://github.com/ecomba/vim-ruby-refactoring.git
