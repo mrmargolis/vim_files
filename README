@@ -1,4 +1,5 @@
 Clone this repo to .vim and symlink .vim/vimrc to ~/.vimrc 
+ln -s ~/.vim/vimrc ~/.vimrc
 
 To get all the git submodules in /bundle run
 git submodule init
