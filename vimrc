@@ -98,6 +98,13 @@ command! Q q " Bind :Q to :q
 map <leader>w :w<cr>
 imap jj <Esc>
 
+"Make semicolon work as colon so you don't have to push shift 
+"for common actions
+map ; :
+"Two semicolons == semicolon
+noremap ;; ;
+
+
 
 "cmdline mappings for Emacs style movement on cmdline
 cnoremap <C-A> <Home>
