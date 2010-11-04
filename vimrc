@@ -1,18 +1,20 @@
 call pathogen#helptags()
 call pathogen#runtime_append_all_bundles()
+" On some Linux systems, this is necessary to make sure pathogen picks up ftdetect directories in plugins! :(
+filetype off 
+syntax on
+
 
 
 " Clear old autocmds in group so we don't get warnings
 autocmd!
-
-set mouse=a
-set clipboard=unnamed
 
 
 "General behavior
 set nocompatible
 behave xterm
 
+set mouse=a
 
 "Set mapleader
 let mapleader = ","
@@ -79,7 +81,7 @@ set winminheight=1  " 1 height windows
 "Status bar
 set laststatus=2 "always show status
 set showmode    "show current mode down the bottom
-set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%{rvm#statusline()}%{SyntasticStatuslineFlag()}%=%-14.(%l,%c%V%)\ %P
+set statusline=%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
 
 
 "Linenumbers
@@ -162,16 +164,23 @@ nnoremap <leader>a :Ack
 
 
 "make it easy to source and load vimrc
-:nmap <Leader>v :e $MYVIMRC<cr>
+nmap <Leader>v :e $MYVIMRC<cr>
 " Source the vimrc file after saving it
 if has("autocmd")
   autocmd bufwritepost .vimrc source $MYVIMRC
 endif
 
 
-" CTags make the world a better place
-map <Leader>rt :!ctags --extra=+f -R *<CR><CR>
-:set tags=./tags;
+"Ctags make the world a better place
+"Based on code from https://github.com/spicycode/Vimlander-2-The-Quickening
+" Add RebuildTagsFile function/command
+function! s:RebuildTagsFile()
+  silent !ctags -R --exclude=coverage --exclude=files --exclude=log --exclude=tmp --exclude=vendor *
+endfunction
+command! -nargs=0 RebuildTagsFile call s:RebuildTagsFile()
+
+set tags=./tags;
+map <Leader>rt :RebuildTagsFile<cr>
 
 
 "shortcut for opening new ConqueTerm as a split
