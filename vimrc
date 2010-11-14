@@ -209,6 +209,8 @@ let NERDTreeShowHidden = 1
 let NERDTreeHijackNetrw = 0
 let NERDTreeIgnore=['\.$', '\~$']
 
+"Undo tree view
+nnoremap <F5> :GundoToggle<CR>
 
 "Syntastic
 let g:syntastic_enable_signs=1
