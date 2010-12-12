@@ -97,7 +97,6 @@ hi TabLineFill cterm=bold ctermbg=0
 
 "Shortcuts for common tasks
 command! Q q " Bind :Q to :q
-map <leader>w :w<cr>
 imap jj <Esc>
 
 "Make semicolon work as colon so you don't have to push shift 
@@ -107,14 +106,6 @@ map ; :
 noremap ;; ;
 
 
-
-"cmdline mappings for Emacs style movement on cmdline
-cnoremap <C-A> <Home>
-cnoremap <C-E> <End>
-cnoremap <C-F> <Right>
-cnoremap <C-B> <Left>
-
-
 "Make Y consistent with other cap letters (D, C)
 nnoremap Y y$
 
@@ -122,6 +113,21 @@ nnoremap Y y$
 " keep the visual selection active after indenting.
 vmap > >gv
 vmap < <gv
+
+
+"cmdline
+""""""""""""""""""""""""""""""""""""""""""""""""""
+"cmdline mappings for Emacs style movement on cmdline
+cnoremap <C-A> <Home>
+cnoremap <C-E> <End>
+cnoremap <C-F> <Right>
+cnoremap <C-B> <Left>
+
+"Want to be able to open cmdline window buffer (normally C-F)
+"but still have C-F be <Right>
+set cedit=<C-Y>
+
+
 
 
 " Searching Stuff
@@ -224,4 +230,7 @@ if filereadable($HOME."/.vimrc_work")
 endif
 
 
-
+"Vim Wiki
+let g:vimwiki_list = [{'path': '~/Dropbox/vimwiki/', 'path_html': '~/Dropbox/vimwiki_html/', 'auto_export': 1, 'html_header': '~/Dropbox/vimwiki_html/header.tpl'}]
+map <Leader>wh  :VimwikiAll2HTML<cr>
+map <Leader>wo  :!open ~/Dropbox/vimwiki_html/index.html<cr>
