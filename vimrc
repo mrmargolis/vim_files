@@ -170,7 +170,7 @@ nnoremap <leader>a :Ack
 
 
 "make it easy to source and load vimrc
-nmap <Leader>v :e $MYVIMRC<cr>
+nmap <Leader>v :e ~/.vim/vimrc<cr>
 " Source the vimrc file after saving it
 if has("autocmd")
   autocmd bufwritepost .vimrc source $MYVIMRC
