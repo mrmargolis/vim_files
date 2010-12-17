@@ -78,4 +78,4 @@
 	url = http://github.com/ecomba/vim-ruby-refactoring.git
 [submodule "bundle/vim-rooter"]
 	path = bundle/vim-rooter
-	url = http://github.com/airblade/vim-rooter.git
+	url = git://github.com/airblade/vim-rooter.git 
