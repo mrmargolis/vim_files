@@ -28,9 +28,9 @@ set background=dark
 colorscheme vividchalk
 
 
-"hide macvim gui
 if has("gui_running")
-    set guioptions=egmrt
+  set guioptions=egmrt "hide macvim gui
+  set guifont=Menlo:h18
 endif
 
 
@@ -42,7 +42,7 @@ set autoindent
 set expandtab
 
 
-"Set what VIM thinks of as keywords.  Used when searching and moving
+"Set what Vim thinks of as keywords.  Used when searching and moving
 set isk+=_,$,@,%,#,- 
 
 
@@ -51,7 +51,7 @@ set noerrorbells
 set visualbell t_vb=
 
 
-"General settings that make VIM awesome
+"General settings that make Vim awesome
 filetype plugin indent on
 syntax on 
 set  dictionary="/usr/dict/words"
@@ -64,6 +64,9 @@ set scrolloff=3 "when scroll down start at last 3 lines
 set hidden  "better handling of background buffers
 set backspace=indent,eol,start  " Make backspace delete lots of things
 set showcmd " show partial commands in bottom line
+
+"I rarely use folds 
+set nofoldenable 
 
 
 "set vim to use a central backup dir
@@ -89,15 +92,14 @@ set number
 highlight LineNr term=bold cterm=NONE ctermfg=DarkRed ctermbg=NONE gui=NONE guifg=DarkRed guibg=NONE
 
 
-" A nice, minimalistic tabline
+" A nice, minimalistic tabline in CLI Vim
 hi TabLine cterm=bold,underline ctermfg=8 ctermbg=0
 hi TabLineSel cterm=bold ctermfg=0 ctermbg=7
 hi TabLineFill cterm=bold ctermbg=0
 
 
 "Shortcuts for common tasks
-command! Q q " Bind :Q to :q
-imap jj <Esc>
+command! Q q " Bind :Q to :q.
 
 "Make semicolon work as colon so you don't have to push shift 
 "for common actions
@@ -131,8 +133,7 @@ set cedit=<C-Y>
 
 
 " Searching Stuff
-" map space to starting a new search
-map <space> /
+" I prever very magic (\v) search behavior
 nnoremap / /\v
 vnoremap / /\v
 set hlsearch "set hl search
@@ -163,17 +164,17 @@ vmap <leader>x :!tidy -q -i -xml<CR>
 
 
 " run selection in bash
-vmap ,rs :!bash <CR>
+vmap <leader>rs :!bash <CR>
 
 " mapping to search with Ack
 nnoremap <leader>a :Ack 
 
 
 "make it easy to source and load vimrc
-nmap <Leader>v :e ~/.vim/vimrc<cr>
+nmap <Leader>ve :e ~/.vim/vimrc<cr>
 " Source the vimrc file after saving it
 if has("autocmd")
-  autocmd bufwritepost .vimrc source $MYVIMRC
+  autocmd bufwritepost $HOME/.vim/vimrc source $HOME/.vim/vimrc
 endif
 
 
@@ -190,7 +191,7 @@ map <Leader>rt :RebuildTagsFile<cr>
 
 
 "shortcut for opening new ConqueTerm as a split
-map <leader>s :ConqueTermSplit<space>
+map <leader>sh :ConqueTermSplit<space>
 " Continue updating shell when it's not the current, focused buffer
 let g:ConqueTerm_ReadUnfocused = 1
 
@@ -215,9 +216,6 @@ let NERDTreeShowHidden = 1
 let NERDTreeHijackNetrw = 0
 let NERDTreeIgnore=['\.$', '\~$']
 
-"Undo tree view
-nnoremap <F5> :GundoToggle<CR>
-
 "Syntastic
 let g:syntastic_enable_signs=1
 "let g:syntastic_quiet_warnings=1
@@ -234,3 +232,5 @@ endif
 let g:vimwiki_list = [{'path': '~/Dropbox/vimwiki/', 'path_html': '~/Dropbox/vimwiki_html/', 'auto_export': 1, 'html_header': '~/Dropbox/vimwiki_html/header.tpl'}]
 map <Leader>wh  :VimwikiAll2HTML<cr>
 map <Leader>wo  :!open ~/Dropbox/vimwiki_html/index.html<cr>
+
+
