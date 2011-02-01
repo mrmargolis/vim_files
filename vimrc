@@ -141,7 +141,7 @@ set incsearch "set incsearch
 set ignorecase "set ignore case for search
 set smartcase "be case sensitive if search has cap letter
 set gdefault " /g flag on :s substitutions to replace all matches in a line:
-nnoremap <leader><space> :noh<cr>
+nnoremap <leader><space> :noh<cr>  " remove highlight from search matches
 
 
 
@@ -156,7 +156,7 @@ endif
 
 
 "save as sudo
-command! -bar -nargs=0 SudoW  :silent exe "write !sudo tee % >/dev/null"|silent edit!
+cmap w!! %!sudo tee > /dev/null %
 
 
 " select xml text to format and hit ,x
@@ -204,6 +204,7 @@ let g:CommandTMatchWindowAtTop=1
 " much of this is from http://github.com/spicycode/Vimlander-2-The-Quickening
 map <leader>dc :NERDTreeClose<cr>
 map <leader>do :NERDTree<cr>
+map <leader>df :NERDTreeFind<cr>
 " Enable nice colors
 let NERDChristmasTree = 1
 " Make it easy to see where we are
@@ -217,9 +218,8 @@ let NERDTreeHijackNetrw = 0
 let NERDTreeIgnore=['\.$', '\~$']
 
 "Syntastic
-let g:syntastic_enable_signs=1
-"let g:syntastic_quiet_warnings=1
-let g:syntastic_auto_loc_list=0
+let g:syntastic_enable_signs=1 "show markers next to each error/warning
+let g:syntastic_auto_loc_list=0 "don't pop up the Errors list automatically
 
 
 "load some work stuff
