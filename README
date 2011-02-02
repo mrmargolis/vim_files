@@ -6,4 +6,7 @@ ln -s ~/.vim/vimrc ~/.vimrc
 Step 2: To get all the plugins setup
 git submodule init
 git submodule update
-rm -rf ~/.vim/bundle/snipmate.vim/snippets        (I keep snippets in .vim/snippets)
+rm -rf ~/.vim/bundle/snipmate.vim/snippets        
+cd ~/.vim/bundle/command-t/ruby/command-t
+ruby extconf.rb
+make
