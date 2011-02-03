@@ -169,6 +169,10 @@ vmap <leader>rs :!bash <CR>
 " mapping to search with Ack
 nnoremap <leader>a :Ack 
 
+" Shortcut for switching to 'special' buffers that start with -
+" This is an experiment in my workflow to see if having conque-term buffers like server,
+" specs, log tail, etc... works well for me.
+nnoremap <leader>bs :b -
 
 "make it easy to source and load vimrc
 nmap <Leader>ve :e ~/.vim/vimrc<cr>
