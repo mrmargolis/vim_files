@@ -1,9 +1,14 @@
+Step 0:  Install Vim with ruby and python support.  You can check if your install has these settings by looking at the output of 
+vim --version
+You should see +ruby +python.  If you do not see both of these options then I suggest installing Macvim or building Vim from source with the flags indicated in the Vim installation instructions.
+
 Step 1: Clone this repo to .vim and symlink .vim/vimrc to ~/.vimrc 
 cd ~
 git clone git://github.com/mrmargolis/vim_files.git .vim
 ln -s ~/.vim/vimrc ~/.vimrc
 
 Step 2: To get all the plugins setup
+cd ~/.vim
 git submodule init
 git submodule update
 rm -rf ~/.vim/bundle/snipmate.vim/snippets        
