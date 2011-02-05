@@ -1,4 +1,5 @@
-Step 0:  Install Vim with ruby and python support.  You can check if your install has these settings by looking at the output of 
+Step 0:  Install Vim with ruby and python support.  
+You can check if your install has these settings by looking at the output of 
 vim --version
 You should see +ruby +python.  If you do not see both of these options then I suggest installing Macvim or building Vim from source with the flags indicated in the Vim installation instructions.
 
