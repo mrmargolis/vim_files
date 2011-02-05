@@ -80,5 +80,5 @@
 	path = bundle/vim-rooter
 	url = git://github.com/airblade/vim-rooter.git 
 [submodule "bundle/vim-indentobject"]
-  path = bundle/vim-indentobject
-  url = https://github.com/austintaylor/vim-indentobject.git
+	path = bundle/vim-indentobject
+	url = https://github.com/austintaylor/vim-indentobject.git
