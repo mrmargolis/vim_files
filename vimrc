@@ -236,5 +236,3 @@ endif
 let g:vimwiki_list = [{'path': '~/Dropbox/vimwiki/', 'path_html': '~/Dropbox/vimwiki_html/', 'auto_export': 1, 'html_header': '~/Dropbox/vimwiki_html/header.tpl'}]
 map <Leader>wh  :VimwikiAll2HTML<cr>
 map <Leader>wo  :!open ~/Dropbox/vimwiki_html/index.html<cr>
-
-
