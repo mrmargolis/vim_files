@@ -84,7 +84,7 @@ set winminheight=1  " 1 height windows
 "Status bar
 set laststatus=2 "always show status
 set showmode    "show current mode down the bottom
-set statusline=%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
+set statusline=%<%f\ %h%m%r%{rvm#statusline()}%=%-14.(%l,%c%V%)\ %P
 
 
 "Linenumbers
@@ -170,8 +170,8 @@ vmap <leader>rs :!bash <CR>
 nnoremap <leader>a :Ack 
 
 " Shortcut for switching to 'special' buffers that start with -
-" This is an experiment in my workflow to see if having conque-term buffers like server,
-" specs, log tail, etc... works well for me.
+" This is an experiment in my workflow to see if having renamed (:f new_name)
+" buffers like -server, -specs, -log -tail, etc... works well for me.
 nmap <leader>bs :b -
 
 "make it easy to source and load vimrc
@@ -194,10 +194,13 @@ set tags=./tags;
 map <Leader>rt :RebuildTagsFile<cr>
 
 
-"shortcut for opening new ConqueTerm as a split
-map <leader>sh :ConqueTermSplit<space>
+"shortcut for opening new ConqueTerm
+map <leader>sh :ConqueTerm bash --login<CR>
 " Continue updating shell when it's not the current, focused buffer
 let g:ConqueTerm_ReadUnfocused = 1
+let g:ConqueTerm_CWInsert = 0 " C-w works in insert mode
+let g:ConqueTerm_InsertOnEnter = 1 " default to insert mode when opening a new conque
+let g:ConqueTerm_TERM = 'xterm-color'
 
 "Command-T configuration
 let g:CommandTMaxHeight=35
@@ -218,10 +221,11 @@ let NERDTreeShowBookmarks = 1
 " Show hidden files
 let NERDTreeShowHidden = 1
 " Don't hijack NETRW
-let NERDTreeHijackNetrw = 0
+"let NERDTreeHijackNetrw = 0
+let NERDTreeHijackNetrw = 1
 let NERDTreeIgnore=['\.$', '\~$']
 
-"Syntastic
+"Syntastic.  Awesome syntax error checking for js, ruby, etc...
 let g:syntastic_enable_signs=1 "show markers next to each error/warning
 let g:syntastic_auto_loc_list=0 "don't pop up the Errors list automatically
 

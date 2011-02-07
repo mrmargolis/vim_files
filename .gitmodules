@@ -82,3 +82,6 @@
 [submodule "bundle/vim-indentobject"]
 	path = bundle/vim-indentobject
 	url = https://github.com/austintaylor/vim-indentobject.git
+[submodule "bundle/TailMinusF"]
+	path = bundle/TailMinusF
+	url = https://github.com/matsuu/TailMinusF.git
