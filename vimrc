@@ -2,7 +2,6 @@ call pathogen#helptags()
 call pathogen#runtime_append_all_bundles()
 " On some Linux systems, this is necessary to make sure pathogen picks up ftdetect directories in plugins! :(
 filetype off 
-syntax on
 
 
 
