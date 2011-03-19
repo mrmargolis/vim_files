@@ -63,6 +63,7 @@ set scrolloff=3 "when scroll down start at last 3 lines
 set hidden  "better handling of background buffers
 set backspace=indent,eol,start  " Make backspace delete lots of things
 set showcmd " show partial commands in bottom line
+set timeoutlen=250 " Time to wait after ESC.  TODO decide if this is important
 
 "I rarely use folds 
 set nofoldenable 
@@ -76,7 +77,7 @@ set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 " window behavior
 set splitbelow  " Open new horizontal split windows below current
 set splitright  " Open new vertical split windows to the right
-set switchbuf=useopen,usetab,split  " Don't change current buffer on quickfix
+set switchbuf=useopen,usetab ",split  " Don't change current buffer on quickfix
 set winminheight=1  " 1 height windows
 
 
@@ -239,3 +240,5 @@ endif
 let g:vimwiki_list = [{'path': '~/Dropbox/vimwiki/', 'path_html': '~/Dropbox/vimwiki_html/', 'auto_export': 1, 'html_header': '~/Dropbox/vimwiki_html/header.tpl'}]
 map <Leader>wh  :VimwikiAll2HTML<cr>
 map <Leader>wo  :!open ~/Dropbox/vimwiki_html/index.html<cr>
+
+command! -bar -range=% Trim :<line1>,<line2>s/\s\+$//e

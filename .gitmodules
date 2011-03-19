@@ -64,9 +64,6 @@
 [submodule "bundle/vim-ruby"]
 	path = bundle/vim-ruby
 	url = http://github.com/vim-ruby/vim-ruby.git
-[submodule "bundle/vim-supertab"]
-	path = bundle/vim-supertab
-	url = http://github.com/tsaleh/vim-supertab.git
 [submodule "snippets"]
 	path = snippets
 	url = http://github.com/scrooloose/snipmate-snippets.git
@@ -85,3 +82,6 @@
 [submodule "bundle/TailMinusF"]
 	path = bundle/TailMinusF
 	url = https://github.com/matsuu/TailMinusF.git
+[submodule "bundle/vim-extradite"]
+	path = bundle/vim-extradite
+	url = https://github.com/int3/vim-extradite.git
