@@ -85,8 +85,8 @@
 [submodule "bundle/vim-extradite"]
 	path = bundle/vim-extradite
 	url = https://github.com/int3/vim-extradite.git
-[submodule "bundle/supertab"]
-	path = bundle/supertab
+[submodule "bundle/vim-supertab"]
+	path = bundle/vim-supertab
 	url = https://github.com/ervandew/supertab.git
 [submodule "bundle/pbcopy"]
 	path = bundle/pbcopy
