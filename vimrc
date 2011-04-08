@@ -1,5 +1,5 @@
-call pathogen#helptags()
 call pathogen#runtime_append_all_bundles()
+call pathogen#helptags()
 " On some Linux systems, this is necessary to make sure pathogen picks up ftdetect directories in plugins! :(
 filetype off 
 
@@ -10,7 +10,6 @@ autocmd!
 
 
 "General behavior
-set nocompatible
 behave xterm
 
 set mouse=a
@@ -23,8 +22,11 @@ let g:mapleader = ","
 "colors
 "set background=light
 "colorscheme default
-set background=dark
 colorscheme vividchalk
+set background=dark
+if $TERM == '^\%(screen\|xterm-color\)$' && t_Co == 8
+  set t_Co=16
+endif
 
 
 if has("gui_running")
@@ -63,10 +65,16 @@ set scrolloff=3 "when scroll down start at last 3 lines
 set hidden  "better handling of background buffers
 set backspace=indent,eol,start  " Make backspace delete lots of things
 set showcmd " show partial commands in bottom line
-set timeoutlen=250 " Time to wait after ESC.  TODO decide if this is important
 
 "I rarely use folds 
 set nofoldenable 
+
+"remove included file searching for completions.
+"http://stackoverflow.com/questions/2169645/vims-autocomplete-is-excruciatingly-slow
+set complete-=i
+
+set timeoutlen=3000 "wait this long for mappings
+set ttimeoutlen=50 "Make Esc work faster
 
 
 "set vim to use a central backup dir
@@ -156,23 +164,17 @@ endif
 
 
 "save as sudo
-cmap w!! %!sudo tee > /dev/null %
-
+command! -bar -nargs=0 SudoW :setl nomod|silent exe 'write !sudo tee % >/dev/null'|let &mod = v:shell_error
 
 " select xml text to format and hit ,x
 vmap <leader>x :!tidy -q -i -xml<CR> 
-
 
 " run selection in bash
 vmap <leader>rs :!bash <CR>
 
 " mapping to search with Ack
-nnoremap <leader>a :Ack 
+nnoremap <leader>a :Ack -au 
 
-" Shortcut for switching to 'special' buffers that start with -
-" This is an experiment in my workflow to see if having renamed (:f new_name)
-" buffers like -server, -specs, -log -tail, etc... works well for me.
-nmap <leader>bs :b -
 
 "make it easy to source and load vimrc
 nmap <Leader>ve :e ~/.vim/vimrc<cr>
@@ -193,14 +195,6 @@ command! -nargs=0 RebuildTagsFile call s:RebuildTagsFile()
 set tags=./tags;
 map <Leader>rt :RebuildTagsFile<cr>
 
-
-"shortcut for opening new ConqueTerm
-map <leader>sh :ConqueTerm bash --login<CR>
-" Continue updating shell when it's not the current, focused buffer
-let g:ConqueTerm_ReadUnfocused = 1
-let g:ConqueTerm_CWInsert = 0 " C-w works in insert mode
-let g:ConqueTerm_InsertOnEnter = 1 " default to insert mode when opening a new conque
-let g:ConqueTerm_TERM = 'xterm-color'
 
 "Command-T configuration
 let g:CommandTMaxHeight=35
@@ -242,3 +236,8 @@ map <Leader>wh  :VimwikiAll2HTML<cr>
 map <Leader>wo  :!open ~/Dropbox/vimwiki_html/index.html<cr>
 
 command! -bar -range=% Trim :<line1>,<line2>s/\s\+$//e
+
+nmap \\ <Plug>NERDCommenterInvert
+xmap \\ <Plug>NERDCommenterInvert
+
+iabbrev rdebug require 'ruby-debug'; Debugger.start; Debugger.settings[:autoeval] = 1; Debugger.settings[:autolist] = 1; debugger
