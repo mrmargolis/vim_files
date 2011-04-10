@@ -173,7 +173,7 @@ vmap <leader>x :!tidy -q -i -xml<CR>
 vmap <leader>rs :!bash <CR>
 
 " mapping to search with Ack
-nnoremap <leader>a :Ack -au 
+nnoremap <leader>a :Ack 
 
 
 "make it easy to source and load vimrc
@@ -240,4 +240,11 @@ command! -bar -range=% Trim :<line1>,<line2>s/\s\+$//e
 nmap \\ <Plug>NERDCommenterInvert
 xmap \\ <Plug>NERDCommenterInvert
 
-iabbrev rdebug require 'ruby-debug'; Debugger.start; Debugger.settings[:autoeval] = 1; Debugger.settings[:autolist] = 1; debugger
+
+
+function! ScrollOtherWindow()
+  normal! 
+  normal! 
+  normal! 
+endfunction
+command! -nargs=0 ScrollOtherWindow call ScrollOtherWindow()
