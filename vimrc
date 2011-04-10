@@ -241,10 +241,19 @@ nmap \\ <Plug>NERDCommenterInvert
 xmap \\ <Plug>NERDCommenterInvert
 
 
-
-function! ScrollOtherWindow()
-  normal! 
+"Came up with this when @garybernhardt asked for a port of 
+"emacs' scroll-other-window command on twitter
+"He added the count arg
+function! ScrollOtherWindowDown(count)
+  normal! 
   normal! 
   normal! 
 endfunction
-command! -nargs=0 ScrollOtherWindow call ScrollOtherWindow()
+function! ScrollOtherWindowUp(count)
+  normal! 
+  normal! 
+  normal! 
+endfunction
+nnoremap g<c-y> :call ScrollOtherWindowUp(v:count)<cr>
+nnoremap g<c-e> :call ScrollOtherWindowDown(v:count)<cr>
+
