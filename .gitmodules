@@ -94,3 +94,6 @@
 [submodule "bundle/supertab"]
 	path = bundle/supertab
 	url = https://github.com/ervandew/supertab.git
+[submodule "bundle/tslime.vim/plugin"]
+	path = bundle/tslime.vim/plugin
+	url = https://github.com/kikijump/tslime.vim.git

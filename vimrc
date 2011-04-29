@@ -240,6 +240,7 @@ command! -bar -range=% Trim :<line1>,<line2>s/\s\+$//e
 nmap \\ <Plug>NERDCommenterInvert
 xmap \\ <Plug>NERDCommenterInvert
 
+iabbrev rdebug require 'ruby-debug'; Debugger.start; Debugger.settings[:autoeval] = 1; Debugger.settings[:autolist] = 1; debugger
 
 "Came up with this when @garybernhardt asked for a port of 
 "emacs' scroll-other-window command on twitter
@@ -257,3 +258,5 @@ endfunction
 nnoremap g<c-y> :call ScrollOtherWindowUp(v:count)<cr>
 nnoremap g<c-e> :call ScrollOtherWindowDown(v:count)<cr>
 
+
+command! Edithosts :e /etc/hosts
