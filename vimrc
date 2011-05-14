@@ -1,31 +1,28 @@
 call pathogen#runtime_append_all_bundles()
 call pathogen#helptags()
 " On some Linux systems, this is necessary to make sure pathogen picks up ftdetect directories in plugins! :(
-filetype off 
-
+filetype off
 
 
 " Clear old autocmds in group so we don't get warnings
 autocmd!
 
-
 "General behavior
 behave xterm
-
-set mouse=a
 
 "Set mapleader
 let mapleader = ","
 let g:mapleader = ","
+let localleader = '\'
 
-  
+
 "colors
 "set background=light
 "colorscheme default
 colorscheme vividchalk
 set background=dark
 if $TERM == '^\%(screen\|xterm-color\)$' && t_Co == 8
-  set t_Co=16
+  set t_Co=256
 endif
 
 
@@ -44,7 +41,7 @@ set expandtab
 
 
 "Set what Vim thinks of as keywords.  Used when searching and moving
-set isk+=_,$,@,%,#,- 
+set isk+=_,$,@,%,#,-
 
 
 "no error signals
@@ -54,7 +51,7 @@ set visualbell t_vb=
 
 "General settings that make Vim awesome
 filetype plugin indent on
-syntax on 
+syntax on
 set  dictionary="/usr/dict/words"
 set wildmode=list:longest,full " Better completion
 set wildmenu
@@ -65,9 +62,8 @@ set scrolloff=3 "when scroll down start at last 3 lines
 set hidden  "better handling of background buffers
 set backspace=indent,eol,start  " Make backspace delete lots of things
 set showcmd " show partial commands in bottom line
-
-"I rarely use folds 
-set nofoldenable 
+set mouse=a " sometimes (rarely) a mouse is a good thing
+set nofoldenable "I rarely use folds
 
 "remove included file searching for completions.
 "http://stackoverflow.com/questions/2169645/vims-autocomplete-is-excruciatingly-slow
@@ -109,7 +105,7 @@ hi TabLineFill cterm=bold ctermbg=0
 "Shortcuts for common tasks
 command! Q q " Bind :Q to :q.
 
-"Make semicolon work as colon so you don't have to push shift 
+"Make semicolon work as colon so you don't have to push shift
 "for common actions
 map ; :
 "Two semicolons == semicolon
@@ -167,13 +163,13 @@ endif
 command! -bar -nargs=0 SudoW :setl nomod|silent exe 'write !sudo tee % >/dev/null'|let &mod = v:shell_error
 
 " select xml text to format and hit ,x
-vmap <leader>x :!tidy -q -i -xml<CR> 
+vmap <leader>x :!tidy -q -i -xml<CR>
 
 " run selection in bash
 vmap <leader>rs :!bash <CR>
 
 " mapping to search with Ack
-nnoremap <leader>a :Ack 
+nnoremap <leader>a :Ack
 
 
 "make it easy to source and load vimrc
@@ -201,7 +197,7 @@ let g:CommandTMaxHeight=35
 let g:CommandTMatchWindowAtTop=1
 
 
-"""""""" NERDTree: 
+"""""""" NERDTree:
 " much of this is from http://github.com/spicycode/Vimlander-2-The-Quickening
 map <leader>dc :NERDTreeClose<cr>
 map <leader>do :NERDTree<cr>
@@ -230,6 +226,8 @@ if filereadable($HOME."/.vimrc_work")
 endif
 
 
+let vimclojure#WantNailgun = 1
+
 "Vim Wiki
 let g:vimwiki_list = [{'path': '~/Dropbox/vimwiki/', 'path_html': '~/Dropbox/vimwiki_html/', 'auto_export': 1, 'html_header': '~/Dropbox/vimwiki_html/header.tpl'}]
 map <Leader>wh  :VimwikiAll2HTML<cr>
@@ -242,7 +240,7 @@ xmap \\ <Plug>NERDCommenterInvert
 
 iabbrev rdebug require 'ruby-debug'; Debugger.start; Debugger.settings[:autoeval] = 1; Debugger.settings[:autolist] = 1; debugger
 
-"Came up with this when @garybernhardt asked for a port of 
+"Came up with this when @garybernhardt asked for a port of
 "emacs' scroll-other-window command on twitter
 "He added the count arg
 function! ScrollOtherWindowDown(count)
@@ -257,6 +255,5 @@ function! ScrollOtherWindowUp(count)
 endfunction
 nnoremap g<c-y> :call ScrollOtherWindowUp(v:count)<cr>
 nnoremap g<c-e> :call ScrollOtherWindowDown(v:count)<cr>
-
 
 command! Edithosts :e /etc/hosts
