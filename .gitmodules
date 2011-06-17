@@ -97,3 +97,9 @@
 [submodule "bundle/tslime.vim/plugin"]
 	path = bundle/tslime.vim/plugin
 	url = https://github.com/kikijump/tslime.vim.git
+[submodule "bundle/vim-coffee-script"]
+	path = bundle/vim-coffee-script
+	url = https://github.com/kchmck/vim-coffee-script.git
+[submodule "bundle/molly"]
+	path = bundle/molly
+	url = https://github.com/westoque/molly.vim.git
