@@ -90,7 +90,7 @@
 	url = https://github.com/mortice/pbcopy.vim.git
 [submodule "bundle/vim-markdown-preview"]
 	path = bundle/vim-markdown-preview
-	url = https://github.com/robgleeson/vim-markdown-preview.git
+	url = https://github.com/peterhost/vim-markdown-preview.git
 [submodule "bundle/supertab"]
 	path = bundle/supertab
 	url = https://github.com/ervandew/supertab.git
