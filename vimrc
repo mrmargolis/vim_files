@@ -3,6 +3,9 @@ call pathogen#helptags()
 " On some Linux systems, this is necessary to make sure pathogen picks up ftdetect directories in plugins! :(
 filetype off
 
+" Need this so that ruby scripts in plugins work even if they don't require
+" rubygems
+ruby require 'rubygems'
 
 " Clear old autocmds in group so we don't get warnings
 autocmd!
@@ -62,6 +65,7 @@ set scrolloff=3 "when scroll down start at last 3 lines
 set hidden  "better handling of background buffers
 set backspace=indent,eol,start  " Make backspace delete lots of things
 set showcmd " show partial commands in bottom line
+set cmdheight=2
 set mouse=a " sometimes (rarely) a mouse is a good thing
 set nofoldenable "I rarely use folds
 
@@ -110,6 +114,9 @@ command! Q q " Bind :Q to :q.
 map ; :
 "Two semicolons == semicolon
 noremap ;; ;
+
+"map ,, to jump to last file
+map <leader><leader> <C-^>
 
 
 "Make Y consistent with other cap letters (D, C)
@@ -162,6 +169,11 @@ endif
 "save as sudo
 command! -bar -nargs=0 SudoW :setl nomod|silent exe 'write !sudo tee % >/dev/null'|let &mod = v:shell_error
 
+"Copy current Vim paste register to clipboard
+map <F2> :PBCopy<cr>
+"Toggle between paste and nopaste, shows which one is active
+map <F3> :set paste!\|set paste?<cr>
+
 " select xml text to format and hit ,x
 vmap <leader>x :!tidy -q -i -xml<CR>
 
@@ -173,10 +185,11 @@ nnoremap <leader>a :Ack
 
 
 "make it easy to source and load vimrc
-nmap <Leader>ve :e ~/.vim/vimrc<cr>
+:nnoremap <leader>ve :vsplit $MYVIMRC<cr>
 " Source the vimrc file after saving it
 if has("autocmd")
   autocmd bufwritepost $HOME/.vim/vimrc source $HOME/.vim/vimrc
+  autocmd bufwritepost $HOME/.vimrc source $HOME/.vim/vimrc
 endif
 
 
@@ -257,3 +270,48 @@ nnoremap g<c-y> :call ScrollOtherWindowUp(v:count)<cr>
 nnoremap g<c-e> :call ScrollOtherWindowDown(v:count)<cr>
 
 command! Edithosts :e /etc/hosts
+
+
+" From https://bitbucket.org/sjl/dotfiles/src/1b6ffba66e9f/vim/.vimrc#cl-1023
+" }}}
+" Next and Last {{{
+
+" Motion for "next/last object". For example, "din(" would go to the next "()" pair
+" and delete its contents.
+
+onoremap an :<c-u>call <SID>NextTextObject('a', 'f')<cr>
+xnoremap an :<c-u>call <SID>NextTextObject('a', 'f')<cr>
+onoremap in :<c-u>call <SID>NextTextObject('i', 'f')<cr>
+xnoremap in :<c-u>call <SID>NextTextObject('i', 'f')<cr>
+
+onoremap al :<c-u>call <SID>NextTextObject('a', 'F')<cr>
+xnoremap al :<c-u>call <SID>NextTextObject('a', 'F')<cr>
+onoremap il :<c-u>call <SID>NextTextObject('i', 'F')<cr>
+xnoremap il :<c-u>call <SID>NextTextObject('i', 'F')<cr>
+
+function! s:NextTextObject(motion, dir)
+  let c = nr2char(getchar())
+
+  if c ==# "b"
+      let c = "("
+  elseif c ==# "B"
+      let c = "{"
+  elseif c ==# "d"
+      let c = "["
+  endif
+
+  exe "normal! ".a:dir.c."v".a:motion.c
+endfunction
+
+" }}}
+
+let g:ctrlp_working_path_mode = 2
+let g:ctrlp_match_window_reversed = 1
+let g:ctrlp_max_height = 50
+
+
+map <leader>t :CommandTFlush<cr>\|:CommandT<cr>
+map <leader>T :tabnew\|:CommandTFlush<cr>\|:CommandT<cr>
+
+
+command! InsertTime :normal a<c-r>=strftime('%F %H:%M:%S.0 %z')<cr>
