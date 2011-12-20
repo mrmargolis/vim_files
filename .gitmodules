@@ -127,3 +127,6 @@
 [submodule "bundle/file-line"]
 	path = bundle/file-line
 	url = https://github.com/bogado/file-line.git
+[submodule "bundle/dogmatic"]
+	path = bundle/dogmatic
+	url = git://github.com/mrmargolis/dogmatic.vim.git
