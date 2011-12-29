@@ -79,9 +79,6 @@
 [submodule "bundle/vim-indentobject"]
 	path = bundle/vim-indentobject
 	url = https://github.com/austintaylor/vim-indentobject.git
-[submodule "bundle/TailMinusF"]
-	path = bundle/TailMinusF
-	url = https://github.com/matsuu/TailMinusF.git
 [submodule "bundle/vim-extradite"]
 	path = bundle/vim-extradite
 	url = https://github.com/int3/vim-extradite.git
@@ -100,30 +97,15 @@
 [submodule "bundle/vim-coffee-script"]
 	path = bundle/vim-coffee-script
 	url = https://github.com/kchmck/vim-coffee-script.git
-[submodule "bundle/molly"]
-	path = bundle/molly
-	url = https://github.com/westoque/molly.vim.git
-[submodule "bundle/rtf-highlight"]
-	path = bundle/rtf-highlight
-	url = https://github.com/dharanasoft/rtf-highlight.git
-[submodule "bundle/vim-GitHubDashBoard"]
-	path = bundle/vim-GitHubDashBoard
-	url = https://github.com/lukaszkorecki/vim-GitHubDashBoard.git
 [submodule "bundle/mru.vim"]
 	path = bundle/mru.vim
 	url = https://github.com/vim-scripts/mru.vim.git
 [submodule "bundle/regbuf.vim"]
 	path = bundle/regbuf.vim
 	url = https://github.com/tyru/regbuf.vim.git
-[submodule "bundle/ctrlp.vim"]
-	path = bundle/ctrlp.vim
-	url = https://github.com/kien/ctrlp.vim.git
 [submodule "bundle/vim-rvm"]
 	path = bundle/vim-rvm
 	url = https://github.com/tpope/vim-rvm.git
-[submodule "bundle/MinYankRing.vim"]
-	path = bundle/MinYankRing.vim
-	url = https://github.com/the-isz/MinYankRing.vim.git
 [submodule "bundle/file-line"]
 	path = bundle/file-line
 	url = https://github.com/bogado/file-line.git
