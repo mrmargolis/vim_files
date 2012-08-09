@@ -112,3 +112,6 @@
 [submodule "bundle/dogmatic"]
 	path = bundle/dogmatic
 	url = git://github.com/mrmargolis/dogmatic.vim.git
+[submodule "bundle/vim-slim"]
+	path = bundle/vim-slim
+	url = https://github.com/bbommarito/vim-slim.git

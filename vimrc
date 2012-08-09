@@ -3,11 +3,7 @@ call pathogen#helptags()
 " On some Linux systems, this is necessary to make sure pathogen picks up ftdetect directories in plugins! :(
 filetype off
 
-" Need this so that ruby scripts in plugins work even if they don't require
-" rubygems
-ruby require 'rubygems'
-
-" Clear old autocmds in group so we don't get warnings
+" Clear old autocmds in group so we don't get warnings on reloading vimrc
 autocmd!
 
 "General behavior
@@ -17,7 +13,6 @@ behave xterm
 let mapleader = ","
 let g:mapleader = ","
 let localleader = '\'
-
 
 "colors
 "set background=light
@@ -58,7 +53,7 @@ syntax on
 set  dictionary="/usr/dict/words"
 set wildmode=list:longest,full " Better completion
 set wildmenu
-set ruler
+set ruler " show line and column position
 set autoread " auto read file if it has changed outside of vim
 set history=100 " 100 lines of command line history
 set scrolloff=3 "when scroll down start at last 3 lines
@@ -67,7 +62,7 @@ set backspace=indent,eol,start  " Make backspace delete lots of things
 set showcmd " show partial commands in bottom line
 set cmdheight=2
 set mouse=a " sometimes (rarely) a mouse is a good thing
-set nofoldenable "I rarely use folds
+set nofoldenable " I rarely use folds
 
 "remove included file searching for completions.
 "http://stackoverflow.com/questions/2169645/vims-autocomplete-is-excruciatingly-slow
@@ -95,7 +90,7 @@ set showmode    "show current mode down the bottom
 set statusline=%<%f\ %h%m%r%{rvm#statusline()}%=%-14.(%l,%c%V%)\ %P
 
 
-"Linenumbers
+"Linenumbers on the left side of screen.  I like red numbers
 set number
 highlight LineNr term=bold cterm=NONE ctermfg=DarkRed ctermbg=NONE gui=NONE guifg=DarkRed guibg=NONE
 
@@ -112,7 +107,8 @@ command! Q q " Bind :Q to :q.
 "Make semicolon work as colon so you don't have to push shift
 "for common actions
 map ; :
-"Two semicolons == semicolon
+
+"Two semicolons == semicolon for repeating last T/t/F/f 
 noremap ;; ;
 
 "map ,, to jump to last file
@@ -166,22 +162,27 @@ else
 endif
 
 
-"save as sudo
+"save as sudo with :SudoW
 command! -bar -nargs=0 SudoW :setl nomod|silent exe 'write !sudo tee % >/dev/null'|let &mod = v:shell_error
 
 "Copy current Vim paste register to clipboard
 map <F2> :PBCopy<cr>
+
 "Toggle between paste and nopaste, shows which one is active
 map <F3> :set paste!\|set paste?<cr>
 
 " select xml text to format and hit ,x
 vmap <leader>x :!tidy -q -i -xml<CR>
+" select json text to format and hit ,j
+vmap <leader>j :!python -mjson.tool<CR>
 
 " run selection in bash
 vmap <leader>rs :!bash <CR>
 
 " mapping to search with Ack
 nnoremap <leader>a :Ack
+" mapping to search for word under cursor with Ack
+nnoremap <leader>A :Ack <C-R><C-W><CR>
 
 
 "make it easy to source and load vimrc
@@ -208,6 +209,9 @@ map <Leader>rt :RebuildTagsFile<cr>
 "Command-T configuration
 let g:CommandTMaxHeight=35
 let g:CommandTMatchWindowAtTop=1
+map <leader>t :CommandTFlush<cr>\|:CommandT<cr>
+map <leader>T :tabnew\|:CommandTFlush<cr>\|:CommandT<cr>
+
 
 
 """""""" NERDTree:
@@ -246,11 +250,14 @@ let g:vimwiki_list = [{'path': '~/Dropbox/vimwiki/', 'path_html': '~/Dropbox/vim
 map <Leader>wh  :VimwikiAll2HTML<cr>
 map <Leader>wo  :!open ~/Dropbox/vimwiki_html/index.html<cr>
 
+" Trim command to remove random whitespace.
 command! -bar -range=% Trim :<line1>,<line2>s/\s\+$//e
 
+" \\ To comment and uncomment a line
 nmap \\ <Plug>NERDCommenterInvert
 xmap \\ <Plug>NERDCommenterInvert
 
+" rdebug abbreviation to get ruby debug line
 iabbrev rdebug require 'ruby-debug'; Debugger.start; Debugger.settings[:autoeval] = 1; Debugger.settings[:autolist] = 1; debugger
 
 "Came up with this when @garybernhardt asked for a port of
@@ -269,6 +276,7 @@ endfunction
 nnoremap g<c-y> :call ScrollOtherWindowUp(v:count)<cr>
 nnoremap g<c-e> :call ScrollOtherWindowDown(v:count)<cr>
 
+" Command to jump to hosts file
 command! Edithosts :e /etc/hosts
 
 
@@ -309,9 +317,16 @@ let g:ctrlp_working_path_mode = 2
 let g:ctrlp_match_window_reversed = 1
 let g:ctrlp_max_height = 50
 
+" Turn the current split into a new tab
+" Written for Chris Johnson to show how to turn a split into a new tab
+function! SplitToTab()
+  :tab split
+  :normal! gT
+  :q
+  :normal! gt
+endfunction
+command! -nargs=0 SplitToTab call SplitToTab()
 
-map <leader>t :CommandTFlush<cr>\|:CommandT<cr>
-map <leader>T :tabnew\|:CommandTFlush<cr>\|:CommandT<cr>
-
-
+" I don't need time that often, but when I do I hate having to remember how to
+" get it
 command! InsertTime :normal a<c-r>=strftime('%F %H:%M:%S.0 %z')<cr>
